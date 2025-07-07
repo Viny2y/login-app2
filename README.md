@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sistema de Login e Perfil
 
 Este é um sistema de login e gerenciamento de perfil de usuário com interface moderna e responsiva.
@@ -65,3 +66,7 @@ Para contribuir com o projeto:
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes. 
+=======
+# login-app2
+project carried out on 07/07/2025
+>>>>>>> 1ed667fa905bc07c07b9a5d8524db800e20b6580
