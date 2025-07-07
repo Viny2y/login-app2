@@ -52,6 +52,22 @@ frontend/
 1. Clone o repositório
 2. Certifique-se de que o backend está rodando
 3. Abra o arquivo `index.html` em seu navegador
+4. cd backend; uvicorn main:app --reload   beckend
+5. python -m http.server 808 fontend
+7. Email: keviny@gmail.com
+Senha: 123456
+admin: usuario: keviny@gmail.com
+
+             senha: Palmeiras
+portal admin: http://localhost:8080/admin.html
+
+criar usuario: http://localhost:8080/register.html
+
+st:8080/register.html
+
+site front: http://localhost:8080/login.html
+
+deshboard: http://localhost:8080/dashboard.html
 
 ## Desenvolvimento
 
