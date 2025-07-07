@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Morador</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/morador.css" rel="stylesheet">
+  <style>
+    .header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+      background-color: #f8f9fa;
+      font-weight: bold;
+    }
+
+    .list-group-item {
+      border-left: none;
+      border-right: none;
+    }
+
+    .status {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+    }
+
+    .status.pago {
+      background-color: #198754;
+      color: white;
+    }
+
+    .status.pendente {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-profile-picture {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #0d6efd;
+    }
+
+    .user-info {
+      color: white;
+    }
+
+    .user-info h6 {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .user-info p {
+      margin: 0;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>Painel do Morador</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-4">
+    <div class="user-profile">
+      <div class="profile-picture-container">
+        <img src="../assets/img/default-profile.png" alt="Foto de Perfil" class="user-profile-picture" id="userProfilePicture">
+      </div>
+      <div class="user-info">
+        <h6 id="nomeUsuario">Bem-vindo, Morador</h6>
+        <p id="userEmail"></p>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-light" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-three-dots-vertical"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="menuButton">
+          <li><a class="dropdown-item" href="../profile.html">Meu Perfil</a></li>
+          <li><a class="dropdown-item" href="../alugar.html">Alugar Espaço</a></li>
+          <li><a class="dropdown-item" href="../sobre.html">Histórico do Prédio</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item" onclick="window.location.href='../login.html'">Sair</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="bi bi-megaphone"></i> Avisos
+          </div>
+          <ul class="list-group list-group-flush" id="listaAvisos">
+            <li class="list-group-item text-center">Carregando avisos...</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="bi bi-cash"></i> Suas Taxas
+          </div>
+          <div class="card-body" id="taxasContainer">
+            <div class="text-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Carregando...</span>
+              </div>
+              <p class="mt-2">Carregando taxas...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="bi bi-calendar-event"></i> Próximas Reuniões
+          </div>
+          <ul class="list-group list-group-flush" id="listaReunioes">
+            <li class="list-group-item text-center">Carregando reuniões...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/resident.js"></script>
+</body>
+</html>

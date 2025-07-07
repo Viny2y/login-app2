@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Morador - Visualização</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .list-group-item {
+            border-left: none;
+            border-right: none;
+        }
+
+        .status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+
+        .status.pago {
+            background-color: #198754;
+            color: white;
+        }
+
+        .status.pendente {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .demo-banner {
+            background-color: #ffc107;
+            color: #000;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+        }
+
+        .demo-info {
+            background-color: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-banner">
+        <i class="bi bi-eye"></i> MODO VISUALIZAÇÃO - Interface do Morador (Não Logado)
+    </div>
+
+    <div class="header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>Painel do Morador</h1>
+                <button class="btn btn-light" onclick="voltarParaAdmin()">
+                    <i class="bi bi-arrow-left"></i> Voltar para Admin
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="demo-info">
+            <h5><i class="bi bi-info-circle"></i> Informações da Visualização</h5>
+            <p class="mb-0">Esta é uma visualização da interface do morador. Para acessar funcionalidades completas, o morador deve fazer login em sua conta.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-megaphone"></i> Avisos
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Recolhimento de lixo será às segundas-feiras</li>
+                        <li class="list-group-item">Prazo máximo para pagamentos será dia 10/06</li>
+                        <li class="list-group-item">Faltará água no dia 15/06</li>
+                        <li class="list-group-item">Faltará energia no dia 18/06</li>
+                        <li class="list-group-item">Doação de alimentos será no dia 20/06</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-cash"></i> Taxas (Exemplo)
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-0">Junho</h6>
+                                <small class="text-muted">Vencimento: 10/06</small>
+                            </div>
+                            <span class="badge bg-success">Pago</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-0">Maio</h6>
+                                <small class="text-muted">Vencimento: 10/05</small>
+                            </div>
+                            <span class="badge bg-success">Pago</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-0">Abril</h6>
+                                <small class="text-muted">Vencimento: 10/04</small>
+                            </div>
+                            <span class="badge bg-warning">Pendente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-calendar-event"></i> Próximas Reuniões
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">20/06 - Assembleia Geral às 19h no salão</li>
+                        <li class="list-group-item">05/07 - Reunião sobre portaria</li>
+                        <li class="list-group-item">15/07 - Reunião sobre manutenções</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-tools"></i> Funcionalidades Disponíveis
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <i class="bi bi-person-circle" style="font-size: 2rem; color: #0d6efd;"></i>
+                                    <p class="mt-2">Perfil do Morador</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <i class="bi bi-calendar-check" style="font-size: 2rem; color: #198754;"></i>
+                                    <p class="mt-2">Alugar Espaços</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <i class="bi bi-receipt" style="font-size: 2rem; color: #dc3545;"></i>
+                                    <p class="mt-2">Enviar Comprovantes</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <i class="bi bi-bell" style="font-size: 2rem; color: #ffc107;"></i>
+                                    <p class="mt-2">Notificações</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção: Como Funciona - Alugar Espaços -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-calendar-check"></i> Como Funciona: Alugar Espaços
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-primary">
+                                    <img src="../image/salao.image.jpg" class="card-img-top" alt="Salão" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Salão de Festas</h6>
+                                        <p class="card-text small">Capacidade: 100 pessoas<br>Cozinha completa<br>Sistema de som</p>
+                                        <button class="btn btn-primary btn-sm w-100" disabled>Exemplo: Solicitar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-success">
+                                    <img src="../image/academia.image.jpg" class="card-img-top" alt="Academia" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Academia</h6>
+                                        <p class="card-text small">Equipamentos modernos<br>Ar condicionado<br>Área de alongamento</p>
+                                        <button class="btn btn-success btn-sm w-100" disabled>Exemplo: Solicitar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-info">
+                                    <img src="../image/reuniao.image.jpg" class="card-img-top" alt="Sala de Reuniões" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Sala de Reuniões</h6>
+                                        <p class="card-text small">Projetor e tela<br>Wi-Fi<br>Capacidade: 20 pessoas</p>
+                                        <button class="btn btn-info btn-sm w-100" disabled>Exemplo: Solicitar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <h6>Formulário de Solicitação:</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control mb-2" placeholder="Nome Completo" disabled>
+                                    <input type="email" class="form-control mb-2" placeholder="E-mail" disabled>
+                                    <select class="form-select mb-2" disabled>
+                                        <option>Selecione um cômodo...</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="date" class="form-control mb-2" disabled>
+                                    <input type="time" class="form-control mb-2" disabled>
+                                    <input type="number" class="form-control mb-2" placeholder="Duração (horas)" disabled>
+                                </div>
+                            </div>
+                            <textarea class="form-control mb-2" rows="2" placeholder="Motivo do Aluguel" disabled></textarea>
+                            <button class="btn btn-primary" disabled>Exemplo: Enviar Solicitação</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção: Como Funciona - Enviar Comprovantes -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-receipt"></i> Como Funciona: Enviar Comprovantes
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Taxas do Morador:</h6>
+                                <div class="border rounded p-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <strong>Junho 2025</strong><br>
+                                            <small class="text-muted">Vencimento: 10/06</small>
+                                        </div>
+                                        <span class="badge bg-success">Pago</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <strong>Maio 2025</strong><br>
+                                            <small class="text-muted">Vencimento: 10/05</small>
+                                        </div>
+                                        <span class="badge bg-success">Pago</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <strong>Abril 2025</strong><br>
+                                            <small class="text-muted">Vencimento: 10/04</small>
+                                        </div>
+                                        <span class="badge bg-warning">Pendente</span>
+                                    </div>
+                                    
+                                    <!-- Exemplo de upload para taxa pendente -->
+                                    <div class="border-top pt-3">
+                                        <label class="form-label">Anexar Comprovante PIX (Abril)</label>
+                                        <input type="file" class="form-control mb-2" disabled>
+                                        <div class="form-text">Formatos aceitos: PDF, JPG, PNG</div>
+                                        <button class="btn btn-primary btn-sm" disabled>
+                                            <i class="bi bi-upload"></i> Exemplo: Enviar Comprovante
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Status dos Comprovantes:</h6>
+                                <div class="border rounded p-3">
+                                    <div class="alert alert-info">
+                                        <i class="bi bi-info-circle"></i>
+                                        <strong>Comprovante Enviado</strong><br>
+                                        <small>Aguardando aprovação do administrador</small>
+                                    </div>
+                                    <div class="alert alert-success">
+                                        <i class="bi bi-check-circle"></i>
+                                        <strong>Comprovante Aprovado</strong><br>
+                                        <small>Taxa marcada como PAGO</small>
+                                    </div>
+                                    <div class="alert alert-danger">
+                                        <i class="bi bi-x-circle"></i>
+                                        <strong>Comprovante Rejeitado</strong><br>
+                                        <small>Envie um novo comprovante</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção: Como Funciona - Notificações -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-bell"></i> Como Funciona: Sistema de Notificações
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Exemplos de Notificações:</h6>
+                                <div class="position-relative" style="height: 300px;">
+                                    <!-- Notificação de Sucesso -->
+                                    <div class="position-absolute top-0 end-0" style="z-index: 1000;">
+                                        <div class="alert alert-success alert-dismissible fade show" style="width: 300px;">
+                                            <i class="bi bi-check-circle"></i>
+                                            <strong>Sucesso!</strong> Dados salvos com sucesso!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Notificação de Erro -->
+                                    <div class="position-absolute top-0 end-0 mt-5" style="z-index: 1000;">
+                                        <div class="alert alert-danger alert-dismissible fade show" style="width: 300px;">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                            <strong>Erro!</strong> Erro ao enviar comprovante.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Notificação de Aviso -->
+                                    <div class="position-absolute top-0 end-0 mt-10" style="z-index: 1000;">
+                                        <div class="alert alert-warning alert-dismissible fade show" style="width: 300px;">
+                                            <i class="bi bi-info-circle"></i>
+                                            <strong>Aviso!</strong> Taxa vence em 3 dias.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Tipos de Notificações:</h6>
+                                <div class="list-group">
+                                    <div class="list-group-item">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-check-circle text-success me-2"></i>
+                                            <div>
+                                                <strong>Sucesso</strong><br>
+                                                <small>Dados salvos, solicitações aprovadas, etc.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-exclamation-triangle text-danger me-2"></i>
+                                            <div>
+                                                <strong>Erro</strong><br>
+                                                <small>Falhas no sistema, dados inválidos, etc.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-info-circle text-info me-2"></i>
+                                            <div>
+                                                <strong>Informação</strong><br>
+                                                <small>Avisos importantes, lembretes, etc.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <h6>Características:</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-clock text-primary"></i> Aparecem por 3 segundos</li>
+                                        <li><i class="bi bi-geo-alt text-primary"></i> Canto superior direito</li>
+                                        <li><i class="bi bi-x-circle text-primary"></i> Podem ser fechadas</li>
+                                        <li><i class="bi bi-arrow-up text-primary"></i> Animação suave</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function voltarParaAdmin() {
+            // Fechar esta aba e voltar para o painel admin
+            window.close();
+            // Se a aba não fechar (por questões de segurança), redirecionar
+            if (!window.closed) {
+                window.location.href = "../admin.html";
+            }
+        }
+    </script>
+</body>
+</html> 

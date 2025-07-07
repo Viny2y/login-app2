@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alugar Cômodo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #f8f9fa;
+            --header-bg: #2c3e50;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+            --header-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .rent-header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            display: none;
+            z-index: 1000;
+        }
+
+        .notification.success {
+            background-color: #28a745;
+        }
+
+        .notification.error {
+            background-color: #dc3545;
+        }
+
+        .room-card {
+            transition: transform 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .room-image {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="d-flex align-items-center mb-4">
+            <button class="btn btn-outline-secondary me-3" onclick="window.location.href='morador/painel.html'">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </button>
+            <h2 class="mb-0">Alugar Espaço</h2>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Cômodos Disponíveis</h2>
+                        <p class="card-text">Escolha um dos cômodos disponíveis para sua atividade ou entre em contato conosco para mais informações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+            <div class="col">
+                <div class="card room-card">
+                    <img src="image/salao.image.jpg" class="card-img-top room-image" alt="Salão de Festas">
+                    <div class="card-body">
+                        <h5 class="card-title">Salão de Festas</h5>
+                        <p class="card-text">Espaço amplo e climatizado, ideal para festas e eventos sociais.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Capacidade: 100 pessoas</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Cozinha completa</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Sistema de som</li>
+                        </ul>
+                        <button class="btn btn-primary w-100" onclick="solicitarAluguel('Salão de Festas')">Solicitar Aluguel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card room-card">
+                    <img src="image/academia.image.jpg" class="card-img-top room-image" alt="Academia">
+                    <div class="card-body">
+                        <h5 class="card-title">Academia</h5>
+                        <p class="card-text">Espaço equipado para atividades físicas e treinamentos.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Equipamentos modernos</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Ar condicionado</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Área de alongamento</li>
+                        </ul>
+                        <button class="btn btn-primary w-100" onclick="solicitarAluguel('Academia')">Solicitar Aluguel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card room-card">
+                    <img src="image/reuniao.image.jpg" class="card-img-top room-image" alt="Sala de Reuniões">
+                    <div class="card-body">
+                        <h5 class="card-title">Sala de Reuniões</h5>
+                        <p class="card-text">Ambiente profissional para reuniões e apresentações.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Projetor e tela</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Wi-Fi</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Capacidade: 20 pessoas</li>
+                        </ul>
+                        <button class="btn btn-primary w-100" onclick="solicitarAluguel('Sala de Reuniões')">Solicitar Aluguel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Solicitar Aluguel</h3>
+                        <form id="rentForm">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" id="nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefone" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" id="telefone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comodo" class="form-label">Cômodo</label>
+                                <select class="form-select" id="comodo" required>
+                                    <option value="">Selecione um cômodo...</option>
+                                    <option value="Salão de Festas">Salão de Festas</option>
+                                    <option value="Academia">Academia</option>
+                                    <option value="Sala de Reuniões">Sala de Reuniões</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="data" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="horario" class="form-label">Horário</label>
+                                <input type="time" class="form-control" id="horario" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="duracao" class="form-label">Duração (horas)</label>
+                                <input type="number" class="form-control" id="duracao" min="1" max="8" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="motivo" class="form-label">Motivo do Aluguel</label>
+                                <textarea class="form-control" id="motivo" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Enviar Solicitação</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Informações Importantes</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-clock"></i> Horário de Funcionamento: 8h às 22h</li>
+                            <li><i class="bi bi-calendar-check"></i> Reservas com antecedência mínima de 48h</li>
+                            <li><i class="bi bi-cash"></i> Taxa de limpeza: R$ 50,00</li>
+                            <li><i class="bi bi-shield-check"></i> Caução: R$ 200,00 (devolvido após o evento)</li>
+                            <li><i class="bi bi-dumbbell"></i> É cobrado uma taxa de R$ 99,99 mensal para a academia</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Contato</h4>
+                        <p><i class="bi bi-telephone-fill"></i> (11) 1234-5678</p>
+                        <p><i class="bi bi-envelope-fill"></i> aluguel@predio.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para alternar o tema
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Carregar tema salvo
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        // Função para fazer logout
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+
+        // Função para mostrar notificações
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Função para solicitar aluguel
+        function solicitarAluguel(comodo) {
+            document.getElementById('comodo').value = comodo;
+            document.getElementById('comodo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Manipular envio do formulário
+        document.getElementById('rentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                comodo: document.getElementById('comodo').value,
+                data: document.getElementById('data').value,
+                horario: document.getElementById('horario').value,
+                duracao: document.getElementById('duracao').value,
+                motivo: document.getElementById('motivo').value
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/aluguel/solicitar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar solicitação');
+                }
+
+                showNotification('Solicitação enviada com sucesso!', 'success');
+                document.getElementById('rentForm').reset();
+            } catch (error) {
+                console.error('Erro:', error);
+                showNotification('Erro ao enviar solicitação', 'error');
+            }
+        });
+    </script>
+</body>
+</html> 

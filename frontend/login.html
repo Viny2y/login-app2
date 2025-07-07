@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+  <div class="container">
+    <form id="loginForm">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Senha" required />
+      <button type="submit">Entrar</button>
+      <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
+    </form>
+  </div>
+
+  <div id="notification" style="display:none;position:fixed;top:20px;right:20px;padding:15px;border-radius:5px;color:white;z-index:1000;"></div>
+
+  <script>
+    function showNotification(message, type) {
+      const notification = document.getElementById("notification");
+      notification.textContent = message;
+      notification.style.display = "block";
+      notification.style.backgroundColor = type === "error" ? "#dc3545" : "#28a745";
+      setTimeout(() => {
+        notification.style.display = "none";
+      }, 3000);
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/token", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: new URLSearchParams({
+            'username': email,
+            'password': password
+          })
+        });
+
+        const responseData = await response.json();
+        console.log("Resposta do login:", responseData);
+
+        if (response.ok) {
+          const token = responseData.access_token;
+          console.log("Token a ser usado:", token);
+          localStorage.setItem("token", token);
+          
+          const headers = {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          };
+          console.log("Headers da requisição:", headers);
+
+          const userResponse = await fetch("http://127.0.0.1:8000/users/me", {
+              headers: headers
+          });
+          
+          console.log("Status da resposta do usuário:", userResponse.status);
+          
+          if (userResponse.ok) {
+              const userData = await userResponse.json();
+              console.log("Dados do usuário:", userData);
+              showNotification("Login realizado com sucesso!", "success");
+              localStorage.setItem("usuarioLogado", JSON.stringify({
+                nome: userData.name,
+                tipo: userData.role === "admin" ? "admin" : "morador",
+                email: userData.email,
+                profile_picture: userData.profile_picture
+              }));
+              setTimeout(() => {
+                if (userData.role === "admin") {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "morador/painel.html";
+                }
+              }, 1000);
+          } else {
+              let errorMessage = "Erro ao verificar permissões do usuário";
+              try {
+                  const errorData = await userResponse.json();
+                  console.error("Erro detalhado:", errorData);
+                  errorMessage = errorData.detail || errorMessage;
+              } catch (e) {
+                  console.error("Erro ao ler resposta:", e);
+              }
+              showNotification(errorMessage, "error");
+          }
+        } else {
+          showNotification(responseData.detail || "Falha no login", "error");
+        }
+      } catch (error) {
+        console.error("Erro ao fazer requisição:", error);
+        showNotification("Erro ao conectar com o servidor. Verifique se o backend está rodando.", "error");
+      }
+    });
+  </script>
+</body>
+</html>

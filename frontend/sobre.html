@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o Prédio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #f8f9fa;
+            --header-bg: #2c3e50;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+            --header-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .about-header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--text-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 5px;
+            position: relative;
+            width: calc(50% - 30px);
+            margin-left: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--header-bg);
+            border-radius: 50%;
+            top: 20px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -40px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+            }
+
+            .timeline-content::before {
+                left: -40px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="d-flex align-items-center mb-4">
+            <button class="btn btn-outline-secondary me-3" onclick="window.location.href='morador/painel.html'">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </button>
+            <h2 class="mb-0">Histórico do Prédio</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">Nossa História</h2>
+                        <p class="card-text">
+                            O Edifício Residencial Harmonia foi construído em 1985, com o objetivo de proporcionar um espaço acolhedor e moderno para seus moradores. Ao longo dos anos, o prédio passou por várias reformas e melhorias, sempre mantendo o compromisso com a qualidade de vida dos residentes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1985</h3>
+                            <p>Inauguração do Edifício Residencial Harmonia, com 12 andares e 48 apartamentos.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>1995</h3>
+                            <p>Primeira grande reforma, incluindo a modernização do sistema de elevadores e a instalação de interfones.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>2005</h3>
+                            <p>Implementação do sistema de segurança 24 horas e instalação de câmeras de monitoramento.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>2015</h3>
+                            <p>Reforma completa da área de lazer, incluindo academia, salão de festas e jardim.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>2020</h3>
+                            <p>Modernização do sistema de energia com instalação de painéis solares e implementação de coleta seletiva.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h2 class="card-title">Nossos Valores</h2>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4><i class="bi bi-heart-fill text-danger"></i> Comunidade</h4>
+                                <p>Valorizamos o convívio harmonioso entre os moradores e a construção de uma comunidade unida.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h4><i class="bi bi-shield-fill-check text-primary"></i> Segurança</h4>
+                                <p>Comprometimento com a segurança e bem-estar de todos os residentes.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h4><i class="bi bi-tree-fill text-success"></i> Sustentabilidade</h4>
+                                <p>Práticas sustentáveis e respeito ao meio ambiente em todas as nossas ações.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para alternar o tema
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Carregar tema salvo
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        // Função para fazer logout
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 
